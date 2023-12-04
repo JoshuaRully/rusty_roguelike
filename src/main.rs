@@ -10,7 +10,7 @@ mod prelude {
 use prelude::*;
 
 struct State {
-    map: Map
+    map: Map,
 }
 
 impl State {
