@@ -17,7 +17,9 @@ pub fn spawn_player(ecs: &mut World, pos: Point) {
 
 pub fn spawn_enemy(ecs: &mut World, rng: &mut RandomNumberGenerator, pos: Point) {
     let (hp, name, glyph) = match rng.roll_dice(1, 10) {
-        1..=8 => goblin(),
+        1..=4 => goblin(),
+        5..=6 => ogre(),
+        7..=8 => eoten(),
         _ => orc(),
     };
 
@@ -48,4 +50,12 @@ fn goblin() -> (i32, String, FontCharType) {
 
 fn orc() -> (i32, String, FontCharType) {
     (2, "Orc".to_string(), to_cp437('o'))
+}
+
+fn ogre() -> (i32, String, FontCharType) {
+    (3, "Ogre".to_string(), to_cp437('O'))
+}
+
+fn eoten() -> (i32, String, FontCharType) {
+    (4, "Eoten".to_string(), to_cp437('E'))
 }

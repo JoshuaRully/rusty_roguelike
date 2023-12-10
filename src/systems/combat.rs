@@ -10,7 +10,11 @@ pub fn combat(ecs: &mut SubWorld, commands: &mut CommandBuffer) {
         .map(|(entity, attack)| (*entity, attack.target))
         .collect();
     targets.iter().for_each(|(message, target)| {
-        if let Ok(mut health) = ecs.entry_mut(*target).unwrap().get_component_mut::<Health>() {
+        if let Ok(mut health) = ecs
+            .entry_mut(*target)
+            .unwrap()
+            .get_component_mut::<Health>()
+        {
             // TODO: remove debug prints after verifying functionality
             println!("Health before attack: {}", health.current);
             health.current -= 1;
