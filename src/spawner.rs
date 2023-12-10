@@ -59,3 +59,4 @@ fn ogre() -> (i32, String, FontCharType) {
 fn eoten() -> (i32, String, FontCharType) {
     (4, "Eoten".to_string(), to_cp437('E'))
 }
+// TODO: finish implementing all enemy types
