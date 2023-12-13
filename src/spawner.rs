@@ -35,7 +35,7 @@ pub fn spawn_enemy(ecs: &mut World, rng: &mut RandomNumberGenerator, pos: Point)
                 _ => to_cp437('g'),
             },
         },
-        MovingRandomly {},
+        ChasingPlayer {},
         Health {
             current: hp,
             max: hp,
