@@ -16,7 +16,7 @@ pub fn spawn_player(ecs: &mut World, pos: Point) {
 }
 
 pub fn spawn_enemy(ecs: &mut World, rng: &mut RandomNumberGenerator, pos: Point) {
-    let (hp, name, glyph) = match rng.roll_dice(1, 10) {
+    let (hp, name, _glyph) = match rng.roll_dice(1, 10) {
         1..=4 => goblin(),
         5..=6 => ogre(),
         7..=8 => eoten(),
