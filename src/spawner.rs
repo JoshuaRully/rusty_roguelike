@@ -9,9 +9,22 @@ pub fn spawn_player(ecs: &mut World, pos: Point) {
             glyph: to_cp437('@'),
         },
         Health {
-            current: 20,
-            max: 20,
+            current: 30,
+            max: 30,
         },
+    ));
+}
+
+pub fn spawn_amulet_of_yala(ecs: &mut World, pos: Point) {
+    ecs.push((
+        Item,
+        AmuletOfYala,
+        pos,
+        Render {
+            color: ColorPair::new(WHITE, BLACK),
+            glyph: to_cp437('|'),
+        },
+        Name("Amulet of Yala".to_string()),
     ));
 }
 
@@ -59,4 +72,3 @@ fn ogre() -> (i32, String, FontCharType) {
 fn eoten() -> (i32, String, FontCharType) {
     (4, "Eoten".to_string(), to_cp437('E'))
 }
-// TODO: finish implementing all enemy types
