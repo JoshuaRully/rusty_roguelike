@@ -9,6 +9,7 @@ pub enum TileType {
 
 pub struct Map {
     pub tiles: Vec<TileType>,
+    pub revealed_tiles: Vec<bool>
 }
 
 // Y-first striding - note that Morton Encoding stores adjacent tiles together in memory
@@ -20,6 +21,7 @@ impl Map {
     pub fn new() -> Self {
         Self {
             tiles: vec![TileType::Floor; NUM_TILES],
+            revealed_tiles: vec![false; NUM_TILES]
         }
     }
 

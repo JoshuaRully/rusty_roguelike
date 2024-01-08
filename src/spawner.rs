@@ -8,10 +8,9 @@ pub fn spawn_player(ecs: &mut World, pos: Point) {
             color: ColorPair::new(WHITE, BLACK),
             glyph: to_cp437('@'),
         },
-        // Temp health value for easy test playing
         Health {
-            current: 60,
-            max: 60,
+            current: 10,
+            max: 10,
         },
         FieldOfView::new(8),
     ));
