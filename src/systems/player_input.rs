@@ -24,7 +24,7 @@ pub fn player_input(
             _ => Point::new(0, 0),
         };
 
-        // unnecessary find_map although refactoring makes this bothersome and unwieldy for now 
+        // unnecessary find_map although refactoring makes this bothersome and unwieldy for now
         let (player_entity, destination) = players
             .iter(ecs)
             .find_map(|(entity, pos)| Some((*entity, *pos + delta)))
@@ -61,7 +61,7 @@ pub fn player_input(
             }
         };
         if !did_something {
-            if let Ok(mut health) = ecs
+            if let Ok(health) = ecs
                 .entry_mut(player_entity)
                 .unwrap()
                 .get_component_mut::<Health>()
