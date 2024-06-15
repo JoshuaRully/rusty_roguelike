@@ -18,10 +18,15 @@ trait MapArchitect {
 }
 
 impl MapBuilder {
+    pub fn new(rng: &mut RandomNumberGenerator) -> Self {
+        let mut architect = CellularAutomataArchitect {};
+        architect.new(rng)
+    }
+    
     fn fill(&mut self, tile: TileType) {
         self.map.tiles.iter_mut().for_each(|t| *t = tile);
     }
-
+    
     fn find_most_distant(&self) -> Point {
         let dijkstra_map = DijkstraMap::new(
             SCREEN_WIDTH,
@@ -45,6 +50,30 @@ impl MapBuilder {
         )
     }
 
+    fn spawn_enemies(&self, start: &Point, rng: &mut RandomNumberGenerator) -> Vec<Point> {
+        const NUM_MONSTERS: usize = 50;
+        let mut spawnable_tiles: Vec<Point> = self
+            .map
+            .tiles
+            .iter()
+            .enumerate()
+            .filter(|(idx, t)| {
+                **t == TileType::Floor
+                    && DistanceAlg::Pythagoras.distance2d(*start, self.map.index_to_point2d(*idx))
+                        > 10.0
+            })
+            .map(|(idx, _)| self.map.index_to_point2d(idx))
+            .collect();
+
+        let mut spawns = Vec::new();
+        for _ in 0..NUM_MONSTERS {
+            let target_index = rng.random_slice_index(&spawnable_tiles).unwrap();
+            spawns.push(spawnable_tiles[target_index].clone());
+            spawnable_tiles.remove(target_index);
+        }
+        spawns
+    }
+    
     // TODO: possibly unused code below - refactor in process
     fn build_random_rooms(&mut self, rng: &mut RandomNumberGenerator) {
         while self.rooms.len() < NUM_ROOMS {
@@ -110,8 +139,4 @@ impl MapBuilder {
         }
     }
 
-    pub fn new(rng: &mut RandomNumberGenerator) -> Self {
-        let mut architect = CellularAutomataArchitect {};
-        architect.new(rng)
-    }
 }
