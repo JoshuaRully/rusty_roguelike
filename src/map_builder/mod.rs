@@ -1,8 +1,6 @@
 use crate::prelude::*;
-mod rooms;
-// use rooms::RoomsArchitect;
-mod automata;
-use automata::CellularAutomataArchitect;
+mod drunkard;
+use drunkard::DrunkardsWalkArchitect;
 const NUM_ROOMS: usize = 20;
 
 pub struct MapBuilder {
@@ -19,14 +17,14 @@ trait MapArchitect {
 
 impl MapBuilder {
     pub fn new(rng: &mut RandomNumberGenerator) -> Self {
-        let mut architect = CellularAutomataArchitect {};
+        let mut architect = DrunkardsWalkArchitect {};
         architect.new(rng)
     }
-    
+
     fn fill(&mut self, tile: TileType) {
         self.map.tiles.iter_mut().for_each(|t| *t = tile);
     }
-    
+
     fn find_most_distant(&self) -> Point {
         let dijkstra_map = DijkstraMap::new(
             SCREEN_WIDTH,
@@ -36,7 +34,7 @@ impl MapBuilder {
             1024.0,
         );
 
-        // needed to disqualify unreachable tiles as amulet start positions
+        // disqualify unreachable tiles as amulet start positions
         const UNREACHABLE: &f32 = &f32::MAX;
         self.map.index_to_point2d(
             dijkstra_map
@@ -73,8 +71,7 @@ impl MapBuilder {
         }
         spawns
     }
-    
-    // TODO: possibly unused code below - refactor in process
+
     fn build_random_rooms(&mut self, rng: &mut RandomNumberGenerator) {
         while self.rooms.len() < NUM_ROOMS {
             let room = Rect::with_size(
@@ -138,5 +135,4 @@ impl MapBuilder {
             }
         }
     }
-
 }
