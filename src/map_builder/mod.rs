@@ -1,16 +1,17 @@
 use crate::prelude::*;
-mod drunkard;
-mod rooms;
 mod automata;
+mod drunkard;
+mod prefab;
+mod rooms;
+use automata::CellularAutomataArchitect;
 use drunkard::DrunkardsWalkArchitect;
 use rooms::RoomsArchitect;
-use automata::CellularAutomataArchitect;
 const NUM_ROOMS: usize = 20;
 
 pub struct MapBuilder {
     pub map: Map,
     pub rooms: Vec<Rect>,
-    pub monster_spawns: Vec<Point>,
+    pub enemy_spawns: Vec<Point>,
     pub player_start: Point,
     pub amulet_start: Point,
 }
@@ -22,9 +23,9 @@ trait MapArchitect {
 impl MapBuilder {
     pub fn new(rng: &mut RandomNumberGenerator) -> Self {
         let mut architect: Box<dyn MapArchitect> = match rng.range(0, 3) {
-            0 => Box::new(DrunkardsWalkArchitect{}),
-            1 => Box::new(RoomsArchitect{}),
-            _ => Box::new(CellularAutomataArchitect{})
+            0 => Box::new(DrunkardsWalkArchitect {}),
+            1 => Box::new(RoomsArchitect {}),
+            _ => Box::new(CellularAutomataArchitect {}),
         };
         let mb = architect.new(rng);
         mb

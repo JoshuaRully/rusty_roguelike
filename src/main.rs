@@ -43,7 +43,7 @@ impl State {
         spawn_player(&mut ecs, map_builder.player_start);
         spawn_amulet_of_yala(&mut ecs, map_builder.amulet_start);
         map_builder
-            .monster_spawns
+            .enemy_spawns
             .iter()
             .for_each(|pos| spawn_enemy(&mut ecs, &mut rng, *pos));
 
@@ -112,7 +112,7 @@ impl State {
         spawn_player(&mut self.ecs, map_builder.player_start);
         spawn_amulet_of_yala(&mut self.ecs, map_builder.amulet_start);
         map_builder
-            .monster_spawns
+            .enemy_spawns
             .iter()
             .for_each(|pos| spawn_enemy(&mut self.ecs, &mut rng, *pos));
         self.resources.insert(map_builder.map);

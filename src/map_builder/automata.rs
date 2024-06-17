@@ -1,5 +1,5 @@
-use crate::prelude::*;
 use super::MapArchitect;
+use crate::prelude::*;
 
 pub struct CellularAutomataArchitect {}
 
@@ -8,7 +8,7 @@ impl MapArchitect for CellularAutomataArchitect {
         let mut mb = MapBuilder {
             map: Map::new(),
             rooms: Vec::new(),
-            monster_spawns: Vec::new(),
+            enemy_spawns: Vec::new(),
             player_start: Point::zero(),
             amulet_start: Point::zero(),
         };
@@ -18,7 +18,7 @@ impl MapArchitect for CellularAutomataArchitect {
             self.iteration(&mut mb.map);
         }
         let start = self.find_start(&mb.map);
-        mb.monster_spawns = mb.spawn_enemies(&start, rng);
+        mb.enemy_spawns = mb.spawn_enemies(&start, rng);
         mb.player_start = start;
         mb.amulet_start = mb.find_most_distant();
         mb

@@ -1,5 +1,5 @@
-use crate::prelude::*;
 use super::MapArchitect;
+use crate::prelude::*;
 
 const STAGGER_DISTANCE: usize = 400;
 const NUM_TILES: usize = (SCREEN_WIDTH * SCREEN_HEIGHT) as usize;
@@ -13,7 +13,7 @@ impl MapArchitect for DrunkardsWalkArchitect {
         let mut mb = MapBuilder {
             map: Map::new(),
             rooms: Vec::new(),
-            monster_spawns: Vec::new(),
+            enemy_spawns: Vec::new(),
             player_start: Point::zero(),
             amulet_start: Point::zero(),
         };
@@ -47,7 +47,7 @@ impl MapArchitect for DrunkardsWalkArchitect {
                 .filter(|(_, distance)| *distance > &2000.0)
                 .for_each(|(idx, _)| mb.map.tiles[idx] = TileType::Wall);
         }
-        mb.monster_spawns = mb.spawn_enemies(&center, rng);
+        mb.enemy_spawns = mb.spawn_enemies(&center, rng);
         mb.player_start = center;
         mb.amulet_start = mb.find_most_distant();
         mb
