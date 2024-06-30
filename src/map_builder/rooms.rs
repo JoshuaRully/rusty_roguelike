@@ -1,4 +1,4 @@
-use super::MapArchitect;
+use super::{themes::DungeonTheme, MapArchitect};
 use crate::prelude::*;
 
 pub struct RoomsArchitect {}
@@ -11,6 +11,7 @@ impl MapArchitect for RoomsArchitect {
             enemy_spawns: Vec::new(),
             player_start: Point::zero(),
             amulet_start: Point::zero(),
+            theme: DungeonTheme::new(),
         };
 
         mb.fill(TileType::Wall);

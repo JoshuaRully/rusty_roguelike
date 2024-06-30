@@ -1,3 +1,4 @@
+use super::themes::DungeonTheme;
 use super::MapArchitect;
 use crate::prelude::*;
 
@@ -16,6 +17,7 @@ impl MapArchitect for DrunkardsWalkArchitect {
             enemy_spawns: Vec::new(),
             player_start: Point::zero(),
             amulet_start: Point::zero(),
+            theme: DungeonTheme::new(),
         };
         mb.fill(TileType::Wall);
         let center = Point::new(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
