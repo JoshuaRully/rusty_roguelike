@@ -12,6 +12,7 @@ use themes::*;
 
 const NUM_ROOMS: usize = 20;
 
+// TODO: map themes are defaulted to dungeon - room for optimization via usage of an Option in respective architecs
 pub struct MapBuilder {
     pub map: Map,
     pub rooms: Vec<Rect>,
@@ -90,7 +91,7 @@ impl MapBuilder {
         let mut spawns = Vec::new();
         for _ in 0..NUM_MONSTERS {
             let target_index = rng.random_slice_index(&spawnable_tiles).unwrap();
-            spawns.push(spawnable_tiles[target_index].clone());
+            spawns.push(spawnable_tiles[target_index]);
             spawnable_tiles.remove(target_index);
         }
         spawns

@@ -45,7 +45,7 @@ impl CellularAutomataArchitect {
         let mut neighbours = 0;
         for iy in -1..=1 {
             for ix in -1..=1 {
-                if !(iy == 0 && iy == 0) && map.tiles[map_idx(x + ix, y + iy)] == TileType::Wall {
+                if !(ix == 0 && iy == 0) && map.tiles[map_idx(x + ix, y + iy)] == TileType::Wall {
                     neighbours += 1;
                 }
             }
@@ -83,7 +83,7 @@ impl CellularAutomataArchitect {
                     DistanceAlg::Pythagoras.distance2d(center, map.index_to_point2d(idx)),
                 )
             })
-            .min_by(|(_, distance), (_, distance2)| distance.partial_cmp(&distance2).unwrap())
+            .min_by(|(_, distance), (_, distance2)| distance.partial_cmp(distance2).unwrap())
             .map(|(idx, _)| idx)
             .unwrap();
         map.index_to_point2d(closest_point)
