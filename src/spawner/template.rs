@@ -21,6 +21,7 @@ pub struct Template {
     pub hp: Option<i32>,
     pub frequency: i32,
     pub provides: Option<Vec<(String, i32)>>,
+    pub base_damage: Option<i32>,
 }
 
 #[derive(Clone, Deserialize, Debug)]
@@ -96,6 +97,12 @@ impl Templates {
                         println!("WARNING: Unhandled 'provides' attribute {}", provides);
                     }
                 });
+        }
+        if let Some(damage) = &template.base_damage {
+            commands.add_component(entity, Damage(*damage));
+            if template.entity_type == EntityType::Item {
+                commands.add_component(entity, Weapon {});
+            }
         }
     }
 }

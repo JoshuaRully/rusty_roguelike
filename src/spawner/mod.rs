@@ -1,5 +1,5 @@
 use crate::prelude::*;
-use template::{Template, Templates};
+use template::Templates;
 
 mod template;
 
@@ -16,6 +16,7 @@ pub fn spawn_player(ecs: &mut World, pos: Point) {
             max: 200,
         },
         FieldOfView::new(8),
+        Damage(1),
     ));
 }
 
