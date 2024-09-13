@@ -11,7 +11,7 @@ I've thoroughly enjoyed video games since as early as I can remember and I've ha
 I plan on treating this repository as a playground for tinkering and experimentation as I learn more about the various disciplines of game development such as artwork, music, level design, etc.
 
 ### Personal Notes
-1.  Refactor code structure to adhere to perferred best practices
+1. Refactor code structure to adhere to perferred best practices
 2. Serialize ECS for game saves
 3. Implement particle effects
 4. Attempt pixel art for assets

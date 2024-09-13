@@ -43,7 +43,7 @@ pub fn player_input(
                                 <(Entity, &Carried, &Weapon)>::query()
                                     .iter(ecs)
                                     .filter(|(_, c, _)| c.0 == player)
-                                    .for_each(|(e, c, w)| {
+                                    .for_each(|(e, _c, _w)| {
                                         commands.remove(*e);
                                     })
                             }

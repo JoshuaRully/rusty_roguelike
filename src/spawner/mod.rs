@@ -12,8 +12,8 @@ pub fn spawn_player(ecs: &mut World, pos: Point) {
             glyph: to_cp437('@'),
         },
         Health {
-            current: 200,
-            max: 200,
+            current: 100,
+            max: 100,
         },
         FieldOfView::new(8),
         Damage(1),
