@@ -37,7 +37,7 @@ pub fn player_input(
                     .for_each(|(entity, _item, _item_pos)| {
                         commands.remove_component::<Point>(*entity);
                         commands.add_component(*entity, Carried(player));
-
+                        // add text that displays carried weapon?
                         if let Ok(e) = ecs.entry_ref(*entity) {
                             if e.get_component::<Weapon>().is_ok() {
                                 <(Entity, &Carried, &Weapon)>::query()
